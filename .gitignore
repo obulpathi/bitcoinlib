@@ -1,2 +1,4 @@
 *.pyc
 tmp*
+*.swp
+ctags
