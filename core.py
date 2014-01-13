@@ -191,11 +191,11 @@ class CTransaction(object):
         if not self.is_coinbase():
             for tin in self.vin:
                 if not tin.is_valid():
-                    print("tin is invalid")
+                    print("tin is invalid >>>>>>>>>>>")
                     return False
         for tout in self.vout:
             if not tout.is_valid():
-                print("tout is invalid")
+                print("tout is invalid >>>>>>>>>>>>>>")
                 return False
         return True
     def is_final(self):
@@ -204,8 +204,8 @@ class CTransaction(object):
                 return False
         return True
     def is_coinbase(self):
-        print(len(self.vin))
-        print(self.vin[0].prevout.is_null())
+        #print(len(self.vin))
+        #print(self.vin[0].prevout.is_null())
         return len(self.vin) == 1 and self.vin[0].prevout.is_null()
 
     def copy(self, old_tx):
