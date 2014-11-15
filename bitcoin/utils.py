@@ -80,7 +80,7 @@ def address_to_public_key_hash(address):
 def public_key_hex_to_pay_to_script_hash(public_key_hex):
     script = "41" + public_key_hex + "AC"
     return binascii.unhexlify(script)
-    
+
 def address_to_pay_to_pubkey_hash(address):
     print "Not implemented >>>>>>>>>>>>>>>>>>>"
     exit(0)

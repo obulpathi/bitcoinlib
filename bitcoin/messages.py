@@ -274,7 +274,7 @@ def message_read(netmagic, f):
         recvbuf = f.read(4 + 12 + 4 + 4)
     except IOError:
         return None
-    
+
     # check magic
     if len(recvbuf) < 4:
         return

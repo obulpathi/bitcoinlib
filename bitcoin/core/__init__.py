@@ -10,6 +10,7 @@ import socket
 import binascii
 import time
 import hashlib
+
 from bitcoin.serialize import *
 from bitcoin.coredefs import *
 from bitcoin.script import CScript
@@ -147,7 +148,7 @@ class CTxOut(object):
             return False
         script = CScript()
         if not script.tokenize(self.scriptPubKey):
-            print(self.scriptPubKey)
+            print(binascii.hexlify(self.scriptPubKey))
             print("script invalid")
             return False
         return True
@@ -184,18 +185,17 @@ class CTransaction(object):
         r += struct.pack(b"<I", self.nLockTime)
         return r
     def calc_sha256(self):
-        if self.sha256 is None:
-            self.sha256 = Hash(self.serialize())
+        self.sha256 = Hash(self.serialize())
     def is_valid(self):
         self.calc_sha256()
         if not self.is_coinbase():
             for tin in self.vin:
                 if not tin.is_valid():
-                    print("tin is invalid >>>>>>>>>>>")
+                    print("tin is invalid")
                     return False
         for tout in self.vout:
             if not tout.is_valid():
-                print("tout is invalid >>>>>>>>>>>>>>")
+                print("tout is invalid")
                 return False
         return True
     def is_final(self):
@@ -204,8 +204,6 @@ class CTransaction(object):
                 return False
         return True
     def is_coinbase(self):
-        #print(len(self.vin))
-        #print(self.vin[0].prevout.is_null())
         return len(self.vin) == 1 and self.vin[0].prevout.is_null()
 
     def copy(self, old_tx):
