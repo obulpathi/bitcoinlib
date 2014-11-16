@@ -1,4 +1,4 @@
-bitcoinlibpy
-============
+bitcoinlib
+==========
 
-A Python implementation of Bitcoin library
+A Python implementation of Bitcoin library.
